@@ -1,0 +1,60 @@
+<button class="btn btn-primary" (click)="onViewPieces()">View</button>
+<form #PieceFormData="ngForm" (ngSubmit)="onSubmit(PieceFormData)" novalidate>
+  <div>
+    <label for="trayNumber">Tray Number</label>
+    <input
+      type="number"
+      id="trayNumber"
+      name="trayNumber"
+      [(ngModel)]="pieceData.trayNumber"
+      placeholder="Enter Tray Number"
+      required
+      #trayNumber="ngModel"
+    />
+  </div>
+  <div>
+    <label for="pieceType">Type</label>
+    <input
+      type="text"
+      id="pieceType"
+      name="pieceType"
+      [(ngModel)]="pieceData.pieceType"
+      placeholder="Enter Piece Type"
+      required
+      #pieceType="ngModel"
+    />
+  </div>
+
+  <div>
+    <label for="pieceCount">Pieces</label>
+    <input
+      type="number"
+      id="pieceCount"
+      name="pieceCount"
+      [(ngModel)]="pieceData.pieceCount"
+      placeholder="Enter piece count"
+      required
+      #pieceCount="ngModel"
+    />
+  </div>
+
+  <div>
+    <label for="weight">Kgs</label>
+    <input
+      type="number"
+      id="weight"
+      name="weight"
+      [(ngModel)]="pieceData.weight"
+      placeholder="Enter pieces weight"
+      required
+      #weight="ngModel"
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="PieceFormData.invalid"
+  >
+    Add
+  </button>
+</form>

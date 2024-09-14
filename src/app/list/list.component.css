@@ -1,0 +1,51 @@
+.card {
+  padding: 1rem;
+  max-width: 320px;
+  border-radius: 20px;
+  box-shadow: 10px 10px #323232;
+  border: 3px solid #323232;
+  margin: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.metadata {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.tray-number-text {
+  color: #374151;
+  font-size: 18px;
+}
+
+.tray-number {
+  color: #02972f;
+}
+
+.piece-type {
+  font-size: 18px;
+  font-weight: 500;
+  color: #02972f;
+}
+
+.piece-count {
+  color: #02972f;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.piece-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.piece-weight {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}

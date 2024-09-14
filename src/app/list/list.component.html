@@ -1,0 +1,23 @@
+<button class="btn btn-primary" (click)="onHomeRedirect()">Home</button>
+
+@for (piece of piecesList ; track piece.trayNumber) {
+<div class="card">
+  <div class="metadata">
+    <p class="tray-number-text">
+      Tray No: <strong>{{ piece.trayNumber }}</strong>
+    </p>
+    <p class="piece-count">{{ piece.pieceCount }} Pieces</p>
+
+    <p class="piece-weight">{{ piece.weight }} kgs</p>
+  </div>
+  <div class="piece-data">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="edit_square"
+    ></mat-icon>
+
+    <p class="piece-type">{{ piece.pieceType }}</p>
+  </div>
+</div>
+}
