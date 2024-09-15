@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PieceListService } from '../piece-list.service';
@@ -42,6 +42,8 @@ export class FormComponent implements OnInit {
         weight: PieceFormData.value.weight,
       };
       this.pieceListService.addPieceData(piece);
+      this.totalPieceList = this.pieceListService.getTotalData();
+
       PieceFormData.reset();
     }
   }
