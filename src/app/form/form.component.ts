@@ -1,26 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PieceListService } from '../piece-list.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatIconModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   pieceData = {
     trayNumber: null,
     pieceType: '',
     pieceCount: null,
     weight: null,
   };
+  totalPieceList: any = {};
+
   constructor(
     private router: Router,
     private pieceListService: PieceListService
   ) {}
+
+  ngOnInit() {
+    this.totalPieceList = this.pieceListService.getTotalData();
+  }
 
   onViewPieces() {
     this.router.navigate(['viewlist']);

@@ -1,60 +1,171 @@
-<button class="btn btn-primary" (click)="onViewPieces()">View</button>
-<form #PieceFormData="ngForm" (ngSubmit)="onSubmit(PieceFormData)" novalidate>
-  <div>
-    <label for="trayNumber">Tray Number</label>
-    <input
-      type="number"
-      id="trayNumber"
-      name="trayNumber"
-      [(ngModel)]="pieceData.trayNumber"
-      placeholder="Enter Tray Number"
-      required
-      #trayNumber="ngModel"
-    />
+<!-- Card Container -->
+<div class="card">
+  <div class="metadata">
+    <p class="tray-number-text">
+      Total Trays : <strong>{{ totalPieceList.totalTrays }}</strong>
+    </p>
+    <p class="tray-number-text">
+      Total Pieces : <strong>{{ totalPieceList.totalPieces }}</strong>
+    </p>
+    <p class="tray-number-text">
+      Total Weight : <strong>{{ totalPieceList.totalWeight }}</strong>
+    </p>
+    <button class="btn btn-primary" (click)="onViewPieces()">View</button>
   </div>
-  <div>
-    <label for="pieceType">Type</label>
-    <input
-      type="text"
-      id="pieceType"
-      name="pieceType"
-      [(ngModel)]="pieceData.pieceType"
-      placeholder="Enter Piece Type"
-      required
-      #pieceType="ngModel"
-    />
+  <div class="piece-data">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="edit_square"
+    ></mat-icon>
   </div>
+</div>
+<div
+  class="card"
+  style="border: 3px solid #323232; box-shadow: 10px 10px #323232"
+>
+  <!-- View Pieces Button -->
 
-  <div>
-    <label for="pieceCount">Pieces</label>
-    <input
-      type="number"
-      id="pieceCount"
-      name="pieceCount"
-      [(ngModel)]="pieceData.pieceCount"
-      placeholder="Enter piece count"
-      required
-      #pieceCount="ngModel"
-    />
-  </div>
-
-  <div>
-    <label for="weight">Kgs</label>
-    <input
-      type="number"
-      id="weight"
-      name="weight"
-      [(ngModel)]="pieceData.weight"
-      placeholder="Enter pieces weight"
-      required
-      #weight="ngModel"
-    />
-  </div>
-  <button
-    type="submit"
-    class="btn btn-primary"
-    [disabled]="PieceFormData.invalid"
+  <!-- Form -->
+  <form
+    #PieceFormData="ngForm"
+    (ngSubmit)="onSubmit(PieceFormData)"
+    novalidate
+    class="w-full max-w-lg"
   >
-    Add
-  </button>
-</form>
+    <!-- Tray Number -->
+    <div class="flex flex-wrap -mx-3 mb-4">
+      <div class="w-full px-3">
+        <label
+          for="trayNumber"
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        >
+          Tray Number
+        </label>
+        <input
+          type="number"
+          id="trayNumber"
+          name="trayNumber"
+          [(ngModel)]="pieceData.trayNumber"
+          placeholder="Enter Tray Number"
+          required
+          #trayNumber="ngModel"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        />
+        @if(trayNumber.invalid && (trayNumber.dirty || trayNumber.touched)){
+        <p class="text-red-500 text-xs italic">Tray Number is required.</p>
+        }
+      </div>
+    </div>
+
+    <!-- Piece Type (Dropdown) -->
+    <div class="flex flex-wrap -mx-3 mb-4">
+      <div class="w-full px-3">
+        <label
+          for="pieceType"
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        >
+          Type
+        </label>
+        <div class="relative">
+          <select
+            id="pieceType"
+            name="pieceType"
+            [(ngModel)]="pieceData.pieceType"
+            required
+            #pieceType="ngModel"
+            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          >
+            <option value="" disabled>Select Piece Type</option>
+            <option value="Rohu">Rohu</option>
+            <option value="Pangus">Pangus</option>
+            <option value="Roopchand">Roopchand</option>
+            <option value="Katla">Katla</option>
+            <option value="Pangus">Pangus</option>
+          </select>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+          >
+            <svg
+              class="fill-current h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+              />
+            </svg>
+          </div>
+        </div>
+        @if(pieceType.invalid && (pieceType.dirty || pieceType.touched)){
+        <p class="text-red-500 text-xs italic">Piece Type is required.</p>
+        }
+      </div>
+    </div>
+
+    <!-- Piece Count -->
+    <div class="flex flex-wrap -mx-3 mb-4">
+      <div class="w-full px-3">
+        <label
+          for="pieceCount"
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        >
+          Pieces
+        </label>
+        <input
+          type="number"
+          id="pieceCount"
+          name="pieceCount"
+          [(ngModel)]="pieceData.pieceCount"
+          placeholder="Enter Piece Count"
+          required
+          #pieceCount="ngModel"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        />
+        @if(pieceCount.invalid && (pieceCount.dirty || pieceCount.touched)){
+
+        <p class="text-red-500 text-xs italic">Piece Count is required.</p>
+        }
+      </div>
+    </div>
+
+    <!-- Weight -->
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3">
+        <label
+          for="weight"
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        >
+          Weight (kgs)
+        </label>
+        <input
+          type="number"
+          id="weight"
+          name="weight"
+          [(ngModel)]="pieceData.weight"
+          placeholder="Enter Weight"
+          required
+          #weight="ngModel"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        />
+        @if(weight.invalid && (weight.dirty || weight.touched)){
+
+        <p class="text-red-500 text-xs italic">Weight is required.</p>
+        }
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex flex-wrap -mx-3 mb-2">
+      <div class="w-full px-3">
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          [disabled]="PieceFormData.invalid"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

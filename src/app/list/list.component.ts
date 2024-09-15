@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ListComponent {
   piecesList: any[] = [];
-
+  totalPieceList: any = {};
   constructor(
     private pieceListService: PieceListService,
     private router: Router
@@ -21,6 +21,7 @@ export class ListComponent {
 
   ngOnInit() {
     this.piecesList = this.pieceListService.getPieceDataList();
+    this.totalPieceList = this.pieceListService.getTotalData();
   }
 
   onHomeRedirect() {
